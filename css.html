@@ -167,7 +167,7 @@ body {
     <!-- Paystack Payment Button -->
     <section>
         <h2>Unlock Advanced CSS Topics</h2>
-        <p>Pay <strong>₦3000</strong> to access the advanced section.</p>
+        <p>Pay <strong>₦1,500</strong> to access the advanced section.</p>
         <input type="email" id="userEmail" placeholder="Enter your email address" style="padding: 10px; margin-bottom: 10px;">
         <button class="pay-btn" onclick="payWithPaystack()">Access Advanced Content</button>
     </section>
@@ -183,7 +183,7 @@ body {
             let handler = PaystackPop.setup({
                 key: 'pk_live_182d138993f3cce01a4d70db5a22aef3ba96d0d2', // Replace with your Paystack public key
                 email: userEmail,
-                amount: 3000 * 100,
+                amount: 1500 * 100,
                 currency: "NGN",
                 callback: function(response) {
                     alert('Payment successful! Transaction reference: ' + response.reference);
