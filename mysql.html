@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Tutorial - A_Tech</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            font-family: 'Poppins', sans-serif;
+            padding: 20px;
+            line-height: 1.8;
+        }
+
+        h1, h2 {
+            color: #00bcd4;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #2b2b2b;
+            border-radius: 8px;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        pre {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-top: 10px;
+            color: #d1d1d1;
+        }
+
+        code {
+            color: #81d4fa;
+        }
+
+        #advanced-section {
+            display: none;
+        }
+
+        .pay-btn {
+            padding: 10px 20px;
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .pay-btn:hover {
+            background-color: #0097a7;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h1>MySQL Tutorial - A_Tech</h1>
+
+    <!-- Basic MySQL Section -->
+    <section>
+        <h2>Introduction to MySQL</h2>
+        <p>MySQL is an open-source relational database management system used to store and manage data efficiently.</p>
+    </section>
+
+    <section>
+        <h2>Creating a Database</h2>
+        <p>To create a database, use the <code>CREATE DATABASE</code> statement:</p>
+        <pre><code>
+CREATE DATABASE myDatabase;
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>Creating Tables</h2>
+        <p>To create a table, use the <code>CREATE TABLE</code> statement:</p>
+        <pre><code>
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    email VARCHAR(50),
+    age INT
+);
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>Inserting Data</h2>
+        <p>To insert data into a table, use the <code>INSERT INTO</code> statement:</p>
+        <pre><code>
+INSERT INTO users (name, email, age) 
+VALUES ('Ade', 'ade@gmail.com', 25);
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>Retrieving Data</h2>
+        <p>To retrieve data, use the <code>SELECT</code> statement:</p>
+        <pre><code>
+SELECT * FROM users;
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>Updating Data</h2>
+        <p>To update data, use the <code>UPDATE</code> statement:</p>
+        <pre><code>
+UPDATE users SET email = 'newemail@gmail.com' WHERE id = 1;
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>Deleting Data</h2>
+        <p>To delete data, use the <code>DELETE</code> statement:</p>
+        <pre><code>
+DELETE FROM users WHERE id = 1;
+        </code></pre>
+    </section>
+
+    <!-- Advanced MySQL Section (Hidden by default) -->
+    <section id="advanced-section">
+        <h2>Advanced MySQL Topics</h2>
+
+        <h3>1. Joins</h3>
+        <p>Joins are used to combine rows from two or more tables based on a related column.</p>
+        <pre><code>
+SELECT users.name, orders.product
+FROM users
+INNER JOIN orders ON users.id = orders.user_id;
+        </code></pre>
+
+        <h3>2. Indexing</h3>
+        <p>Indexes speed up search queries:</p>
+        <pre><code>
+CREATE INDEX idx_name ON users (name);
+        </code></pre>
+
+        <h3>3. Stored Procedures</h3>
+        <p>Stored procedures are precompiled SQL statements for complex queries:</p>
+        <pre><code>
+DELIMITER //
+CREATE PROCEDURE GetUsers()
+BEGIN
+    SELECT * FROM users;
+END //
+DELIMITER ;
+        </code></pre>
+
+        <h3>4. Triggers</h3>
+        <p>Triggers automatically perform tasks when certain actions occur:</p>
+        <pre><code>
+CREATE TRIGGER before_insert_user
+BEFORE INSERT ON users
+FOR EACH ROW
+SET NEW.name = UPPER(NEW.name);
+        </code></pre>
+
+        <h3>5. Transactions</h3>
+        <p>Transactions ensure multiple SQL operations execute as a unit:</p>
+        <pre><code>
+START TRANSACTION;
+INSERT INTO orders (user_id, product) VALUES (1, 'Laptop');
+COMMIT;
+        </code></pre>
+
+        <h3>6. User Privileges</h3>
+        <p>Managing user access with permissions:</p>
+        <pre><code>
+GRANT ALL PRIVILEGES ON myDatabase.* TO 'username'@'localhost';
+        </code></pre>
+    </section>
+
+    <!-- Paystack Payment Button -->
+    <section>
+        <h2>Unlock Advanced MySQL Topics</h2>
+        <p>Pay <strong>₦1,500</strong> to access the advanced section.</p>
+        <input type="email" id="userEmail" placeholder="Enter your email address" style="padding: 10px; margin-bottom: 10px;">
+        <button class="pay-btn" onclick="payWithPaystack()">Access Advanced Content</button>
+    </section>
+
+    <script>
+        function payWithPaystack() {
+            const userEmail = document.getElementById('userEmail').value;
+            if (!userEmail) {
+                alert("Please enter your email address.");
+                return;
+            }
+            
+            let handler = PaystackPop.setup({
+                key: 'pk_live_182d138993f3cce01a4d70db5a22aef3ba96d0d2',
+                email: userEmail,
+                amount: 1500 * 100,
+                currency: "NGN",
+                callback: function(response) {
+                    alert('Payment successful! Transaction reference: ' + response.reference);
+                    localStorage.setItem("paid_user_mysql", userEmail);
+                    document.getElementById('advanced-section').style.display = 'block';
+                },
+                onClose: function() {
+                    alert('Transaction was not completed, please try again.');
+                }
+            });
+            handler.openIframe();
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const paidUser = localStorage.getItem("paid_user_mysql");
+            if (paidUser) {
+                document.getElementById('advanced-section').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

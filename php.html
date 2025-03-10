@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Tutorial - A_Tech</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            font-family: 'Poppins', sans-serif;
+            padding: 20px;
+            line-height: 1.8;
+        }
+
+        h1, h2 {
+            color: #00bcd4;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #2b2b2b;
+            border-radius: 8px;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        pre {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-top: 10px;
+            color: #d1d1d1;
+        }
+
+        code {
+            color: #81d4fa;
+        }
+
+        #advanced-section {
+            display: none;
+        }
+
+        .pay-btn {
+            padding: 10px 20px;
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .pay-btn:hover {
+            background-color: #0097a7;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h1>PHP Tutorial - A_Tech</h1>
+
+    <!-- Basic PHP Section -->
+    <section>
+        <h2>Introduction to PHP</h2>
+        <p>PHP (Hypertext Preprocessor) is a powerful server-side scripting language used for creating dynamic and interactive web pages.</p>
+    </section>
+
+    <section>
+        <h2>PHP Syntax</h2>
+        <p>PHP code is written inside <code>&lt;?php ... ?&gt;</code> tags. Example:</p>
+        <pre><code>
+&lt;?php
+    echo "Hello, World!";
+?&gt;
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>Variables and Data Types</h2>
+        <p>PHP supports various data types such as strings, integers, booleans, arrays, and objects. Example:</p>
+        <pre><code>
+&lt;?php
+    $name = "Ade";
+    $age = 25;
+    $isDeveloper = true;
+
+    echo $name . " is " . $age . " years old.";
+?&gt;
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>Control Structures</h2>
+        <p>PHP supports if-else statements, loops, and switch cases for decision-making. Example:</p>
+        <pre><code>
+&lt;?php
+    if ($age >= 18) {
+        echo "You are an adult.";
+    } else {
+        echo "You are a minor.";
+    }
+
+    for ($i = 0; $i < 5; $i++) {
+        echo $i;
+    }
+?&gt;
+        </code></pre>
+    </section>
+
+    <!-- Advanced PHP Section (Hidden by default) -->
+    <section id="advanced-section">
+        <h2>Advanced PHP Topics</h2>
+
+        <h3>1. Object-Oriented Programming (OOP)</h3>
+        <p>PHP supports OOP, allowing you to create classes, objects, inheritance, and polymorphism. Example:</p>
+        <pre><code>
+&lt;?php
+    class Person {
+        public $name;
+        public $age;
+
+        public function __construct($name, $age) {
+            $this->name = $name;
+            $this->age = $age;
+        }
+
+        public function greet() {
+            return "Hello, my name is " . $this->name;
+        }
+    }
+
+    $person1 = new Person("Ade", 25);
+    echo $person1->greet();
+?&gt;
+        </code></pre>
+
+        <h3>2. File Handling</h3>
+        <p>PHP allows you to create, read, write, and delete files. Example:</p>
+        <pre><code>
+&lt;?php
+    $file = fopen("test.txt", "w");
+    fwrite($file, "This is a test file.");
+    fclose($file);
+?&gt;
+        </code></pre>
+
+        <h3>3. Sessions and Cookies</h3>
+        <p>Sessions and cookies are used to store user data across multiple pages. Example:</p>
+        <pre><code>
+&lt;?php
+    session_start();
+    $_SESSION["username"] = "Ade";
+    echo "Session saved successfully!";
+?&gt;
+        </code></pre>
+
+        <h3>4. PDO & MySQLi (Database Handling)</h3>
+        <p>PHP provides ways to interact with databases using PDO or MySQLi. Example:</p>
+        <pre><code>
+&lt;?php
+    $conn = new PDO("mysql:host=localhost;dbname=testdb", "root", "");
+
+    $stmt = $conn->prepare("SELECT * FROM users");
+    $stmt->execute();
+
+    $result = $stmt->fetchAll();
+    foreach ($result as $row) {
+        echo $row['name'];
+    }
+?&gt;
+        </code></pre>
+    </section>
+
+    <!-- Paystack Payment Button -->
+    <section>
+        <h2>Unlock Advanced PHP Topics</h2>
+        <p>Pay <strong>₦1,500</strong> to access the advanced section.</p>
+        <input type="email" id="userEmail" placeholder="Enter your email address" style="padding: 10px; margin-bottom: 10px;">
+        <button class="pay-btn" onclick="payWithPaystack()">Access Advanced Content</button>
+    </section>
+
+    <script>
+        function payWithPaystack() {
+            const userEmail = document.getElementById('userEmail').value;
+            if (!userEmail) {
+                alert("Please enter your email address.");
+                return;
+            }
+            
+            let handler = PaystackPop.setup({
+                key: 'pk_live_182d138993f3cce01a4d70db5a22aef3ba96d0d2',
+                email: userEmail,
+                amount: 1500 * 100,
+                currency: "NGN",
+                callback: function(response) {
+                    alert('Payment successful! Transaction reference: ' + response.reference);
+                    localStorage.setItem("paid_user_php", userEmail);
+                    document.getElementById('advanced-section').style.display = 'block';
+                },
+                onClose: function() {
+                    alert('Transaction was not completed, please try again.');
+                }
+            });
+            handler.openIframe();
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const paidUser = localStorage.getItem("paid_user_php");
+            if (paidUser) {
+                document.getElementById('advanced-section').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

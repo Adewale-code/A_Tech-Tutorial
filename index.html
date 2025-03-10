@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A_Tech Tutorials</title>
+    <link rel="stylesheet" href="styl.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1 class="shine">A_Tech Tutorials</h1>
+            <p>Learn Web Development (HTML, CSS, JS, PHP, MySQL)</p>
+        </div>
+
+        <!-- Categories Section -->
+        <div class="categories">
+            <!-- Frontend Tutorials -->
+            <div class="category">
+                <h2><i class="fas fa-code"></i> Frontend Tutorials</h2>
+                <ul>
+                    <li><a href="html.html"><i class="fab fa-html5"></i> HTML</a></li>
+                    <li><a href="css.html"><i class="fab fa-css3-alt"></i> CSS</a></li>
+                    <li><a href="js.html"><i class="fab fa-js"></i> JavaScript</a></li>
+                </ul>
+            </div>
+
+            <!-- Backend Tutorials -->
+            <div class="category">
+                <h2><i class="fas fa-database"></i> Backend Tutorials</h2>
+                <ul>
+                    <li><a href="php.html"><i class="fab fa-php"></i> PHP</a></li>
+                    <li><a href="mysql.html"><i class="fas fa-database"></i> MySQL</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="contact-links">
+        <div class="contact-link">
+            <i class="fa-brands fa-whatsapp"></i>
+            <a href="https://chat.whatsapp.com/HBTqxXC4Dco06y7ljHEjNc " target="_blank">Join WhatsApp Tutorial Group</a>
+        </div>
+        <div class="contact-link">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:erumusene19@gmail.com">Contact Us</a>
+        </div>
+    </div>
+
+    <style>
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            animation: fadeIn 1s;
+        }
+        
+        .contact-link {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .contact-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #00ffff;
+        }
+        
+        .contact-link i {
+            margin-right: 10px;
+            font-size: 1.5em;
+            color: #00ff00; /* WhatsApp Green for WhatsApp icon */
+        }
+        
+        .contact-link a {
+            text-decoration: none;
+            color: #00ffff;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+        
+        .contact-link a:hover {
+            color: #ffcc00;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #0f0c29, #302b63, #24243e);
+            color: white;
+        }
+        
+        /* Main Container */
+        .main-container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            color: #cccccc;
+        }
+        
+        /* Shining Title Animation */
+        .shine {
+            font-size: 2.5em;
+            color: #00ffff;
+            animation: shineEffect 2s infinite;
+        }
+        
+        @keyframes shineEffect {
+            0%, 100% { text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff, 0 0 20px #00ffff; }
+            50% { text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff, 0 0 50px #00ffff; }
+        }
+        
+        /* Categories */
+        .categories {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .category {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: slideIn 1s;
+        }
+        
+        .category:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #00ffff;
+        }
+        
+        /* Category Icons */
+        .category h2 {
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+        
+        .category i {
+            margin-right: 8px;
+        }
+        
+        /* Links */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        li {
+            margin: 10px 0;
+        }
+        
+        li a {
+            text-decoration: none;
+            color: #00ffff;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+        
+        li a:hover {
+            color: #ffcc00;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(20px); }
+            to { transform: translateY(0); }
+        }
+        
+        /* Buttons */
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #00ffff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 5px;
+        }
+        
+        button:hover {
+            background-color: #ffcc00;
+        }
+        
+        /* Form Styling */
+        form {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #1a1a1a;
+            color: white;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .categories {
+                grid-template-columns: 1fr;
+            }
+        
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+        
+        
+    </style>
+</body>
+</html>

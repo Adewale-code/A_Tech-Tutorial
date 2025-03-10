@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Tutorial - A_Tech</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            font-family: 'Poppins', sans-serif;
+            padding: 20px;
+            line-height: 1.8;
+        }
+
+        h1, h2 {
+            color: #00bcd4;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #2b2b2b;
+            border-radius: 8px;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        pre {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-top: 10px;
+            color: #d1d1d1;
+        }
+
+        code {
+            color: #81d4fa;
+        }
+
+        .demo-container {
+            margin-top: 20px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #advanced-section {
+            display: none;
+        }
+
+        .pay-btn {
+            padding: 10px 20px;
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .pay-btn:hover {
+            background-color: #0097a7;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS Tutorial - A_Tech</h1>
+
+    <!-- Basic CSS Section -->
+    <section>
+        <h2>What is CSS?</h2>
+        <p>CSS (Cascading Style Sheets) is a stylesheet language used to describe the presentation of a document written in HTML. CSS controls layout, colors, fonts, and animations.</p>
+    </section>
+
+    <section>
+        <h2>Basic Syntax</h2>
+        <p>A CSS rule consists of a <strong>selector</strong>, <strong>property</strong>, and <strong>value</strong>.</p>
+        
+        <pre><code>
+/* CSS Example */
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>Demo Editor</h2>
+        <div class="demo-container">
+            <iframe src="https://jsfiddle.net/" title="CSS Demo Editor"></iframe>
+        </div>
+    </section>
+
+    <!-- Advanced CSS Section (Hidden by default) -->
+    <section id="advanced-section">
+        <h2>Advanced CSS Topics</h2>
+
+        <h3>1. CSS Grid Layout</h3>
+        <p>CSS Grid Layout is a powerful tool for creating two-dimensional layouts. It provides rows and columns for organizing content.</p>
+        <pre><code>
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+        </code></pre>
+
+        <h3>2. Flexbox Layout</h3>
+        <p>Flexbox is a one-dimensional layout system for aligning items horizontally or vertically with ease.</p>
+        <pre><code>
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+        </code></pre>
+
+        <h3>3. Media Queries (Responsive Design)</h3>
+        <p>Media queries allow your website to be responsive, adapting to different screen sizes.</p>
+        <pre><code>
+@media (max-width: 768px) {
+    body {
+        background-color: darkblue;
+    }
+}
+        </code></pre>
+
+        <h3>4. CSS Animations & Transitions</h3>
+        <p>Creating smooth transitions and animations using <code>@keyframes</code> and <code>transition</code> properties.</p>
+        <pre><code>
+button {
+    transition: background-color 0.5s;
+}
+button:hover {
+    background-color: blue;
+}
+        </code></pre>
+
+        <h3>5. Custom Properties (CSS Variables)</h3>
+        <p>Using CSS variables to maintain consistency and enhance styling flexibility.</p>
+        <pre><code>
+:root {
+    --main-color: #00bcd4;
+}
+body {
+    background-color: var(--main-color);
+}
+        </code></pre>
+    </section>
+
+    <!-- Paystack Payment Button -->
+    <section>
+        <h2>Unlock Advanced CSS Topics</h2>
+        <p>Pay <strong>₦3000</strong> to access the advanced section.</p>
+        <input type="email" id="userEmail" placeholder="Enter your email address" style="padding: 10px; margin-bottom: 10px;">
+        <button class="pay-btn" onclick="payWithPaystack()">Access Advanced Content</button>
+    </section>
+
+    <script>
+        function payWithPaystack() {
+            const userEmail = document.getElementById('userEmail').value;
+            if (!userEmail) {
+                alert("Please enter your email address.");
+                return;
+            }
+            
+            let handler = PaystackPop.setup({
+                key: 'pk_live_182d138993f3cce01a4d70db5a22aef3ba96d0d2', // Replace with your Paystack public key
+                email: userEmail,
+                amount: 3000 * 100,
+                currency: "NGN",
+                callback: function(response) {
+                    alert('Payment successful! Transaction reference: ' + response.reference);
+                    localStorage.setItem("paid_user", userEmail);
+                    document.getElementById('advanced-section').style.display = 'block';
+                },
+                onClose: function() {
+                    alert('Transaction was not completed, please try again.');
+                }
+            });
+            handler.openIframe();
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const paidUser = localStorage.getItem("paid_user");
+            if (paidUser) {
+                document.getElementById('advanced-section').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
