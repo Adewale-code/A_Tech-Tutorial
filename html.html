@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <style>
-        <style>
             body {
                 background-color: #1a1a1a;
                 color: #e0e0e0;
@@ -165,7 +164,7 @@
         </div>
         
         <!-- Advanced Section (Hidden by default) -->
-        <section id="advancedSection" style="display: none;">
+        <section id="advancedSection">
             <h2>Advanced HTML</h2>
             <p>Welcome to the advanced section! Here, we'll dive deeper into HTML.</p>
 
@@ -332,41 +331,9 @@ ctx.fillRect(50, 20, 100, 50);
         </section>
     </section>
 
-        <!-- Payment Button -->
-        <div class="pay-section">
-            <button id="payButton">Access Advanced Content (1,500 Naira)</button>
-        </div>
-    </div>
+   
 
-    <script>
-        const payButton = document.getElementById('payButton');
-        const advancedSection = document.getElementById('advancedSection');
 
-        // Check if the user has already paid
-        if (localStorage.getItem('paid') === 'true') {
-            advancedSection.style.display = 'block';
-            payButton.style.display = 'none';
-        }
-
-        payButton.addEventListener('click', () => {
-            let handler = PaystackPop.setup({
-                key: 'pk_live_182d138993f3cce01a4d70db5a22aef3ba96d0d2',
-                email: 'userEmail', 
-                amount: 10000, 
-                currency: "NGN",
-                callback: function(response) {
-                    alert('Payment successful! Reference: ' + response.reference);
-                    localStorage.setItem('paid', 'true');
-                    advancedSection.style.display = 'block';
-                    payButton.style.display = 'none';
-                },
-                onClose: function() {
-                    alert('Payment was not completed.');
-                }
-            });
-            handler.openIframe();
-        });
-    </script>
 </body>
 </html>
 
