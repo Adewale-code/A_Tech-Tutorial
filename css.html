@@ -165,44 +165,7 @@ body {
     </section>
 
     <!-- Paystack Payment Button -->
-    <section>
-        <h2>Unlock Advanced CSS Topics</h2>
-        <p>Pay <strong>₦1,500</strong> to access the advanced section.</p>
-        <input type="email" id="userEmail" placeholder="Enter your email address" style="padding: 10px; margin-bottom: 10px;">
-        <button class="pay-btn" onclick="payWithPaystack()">Access Advanced Content</button>
-    </section>
 
-    <script>
-        function payWithPaystack() {
-            const userEmail = document.getElementById('userEmail').value;
-            if (!userEmail) {
-                alert("Please enter your email address.");
-                return;
-            }
-            
-            let handler = PaystackPop.setup({
-                key: 'pk_live_182d138993f3cce01a4d70db5a22aef3ba96d0d2', // Replace with your Paystack public key
-                email: userEmail,
-                amount: 1500 * 100,
-                currency: "NGN",
-                callback: function(response) {
-                    alert('Payment successful! Transaction reference: ' + response.reference);
-                    localStorage.setItem("paid_user", userEmail);
-                    document.getElementById('advanced-section').style.display = 'block';
-                },
-                onClose: function() {
-                    alert('Transaction was not completed, please try again.');
-                }
-            });
-            handler.openIframe();
-        }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            const paidUser = localStorage.getItem("paid_user");
-            if (paidUser) {
-                document.getElementById('advanced-section').style.display = 'block';
-            }
-        });
-    </script>
 </body>
 </html>
